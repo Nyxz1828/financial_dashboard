@@ -1,8 +1,20 @@
-# Getting Started with Create React App
+# Bill Splitting App with Financial Dashboard
+This project is a bill splitting application built with React. It allows users to input their expenses, split bills among friends, and provides a financial dashboard to track spending and manage budgets.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+- User-friendly interface for adding expenses and splitting bills.
+- Financial dashboard to visualize spending patterns and manage budgets.
+- Responsive design for use on various devices.
+- Integration with local storage to save user data.
+- Option to export financial data for further analysis.
+- Authentication system for secure access to user data.
+- Favourite person feature to quickly split bills with frequently used contacts.
+- Real-time updates to the dashboard as expenses are added or modified.
+- Friendly reminders for upcoming bills and due dates.
+- Support for multiple currencies and exchange rates.
+- Receipt OCR (Optical Character Recognition) to automatically extract expense details from photos of receipts.
 
-## Available Scripts
+## How to Run 
 
 In the project directory, you can run:
 
