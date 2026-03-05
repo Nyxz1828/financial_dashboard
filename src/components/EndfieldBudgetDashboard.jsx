@@ -1,6 +1,11 @@
 // src/components/EndfieldBudgetDashboard.jsx
 import React, { useEffect, useMemo, useState } from "react";
-import { CategoryLedger, EntryType, LedgerEngine, MoneyEntry } from "../models/ledger";
+import {
+  CategoryLedger,
+  EntryType,
+  LedgerEngine,
+  MoneyEntry,
+} from "../models/ledger";
 import "./endfieldBudget.css";
 
 function formatPerMin(n) {
@@ -21,7 +26,14 @@ function msToHuman(ms) {
 }
 
 // --- SVG Gauge ---
-function RingGauge({ value01, labelTop, centerValue, centerSub, powerUse, powerOutput }) {
+function RingGauge({
+  value01,
+  labelTop,
+  centerValue,
+  centerSub,
+  powerUse,
+  powerOutput,
+}) {
   const size = 320;
   const r = 120;
   const cx = size / 2;
@@ -40,7 +52,12 @@ function RingGauge({ value01, labelTop, centerValue, centerSub, powerUse, powerO
         </div>
       </div>
 
-      <svg width={size} height={size} className="ef-gauge-svg" aria-label="budget gauge">
+      <svg
+        width={size}
+        height={size}
+        className="ef-gauge-svg"
+        aria-label="budget gauge"
+      >
         {/* outer faint arcs (decor) */}
         <circle cx={cx} cy={cy} r={r + 34} className="ef-arc ef-arc-warm" />
         <circle cx={cx} cy={cy} r={r + 18} className="ef-arc ef-arc-cool" />
@@ -59,13 +76,28 @@ function RingGauge({ value01, labelTop, centerValue, centerSub, powerUse, powerO
 
         {/* center panel */}
         <g>
-          <text x={cx} y={cy - 26} textAnchor="middle" className="ef-center-label">
+          <text
+            x={cx}
+            y={cy - 26}
+            textAnchor="middle"
+            className="ef-center-label"
+          >
             {labelTop}
           </text>
-          <text x={cx} y={cy + 18} textAnchor="middle" className="ef-center-value">
+          <text
+            x={cx}
+            y={cy + 18}
+            textAnchor="middle"
+            className="ef-center-value"
+          >
             {centerValue}
           </text>
-          <text x={cx} y={cy + 44} textAnchor="middle" className="ef-center-sub">
+          <text
+            x={cx}
+            y={cy + 44}
+            textAnchor="middle"
+            className="ef-center-sub"
+          >
             {centerSub}
           </text>
         </g>
@@ -147,7 +179,7 @@ export default function EndfieldBudgetDashboard() {
           type: EntryType.INCOME,
           amountPerMin: 55,
           icon: "📄",
-        })
+        }),
       )
       .addEntry(
         new MoneyEntry({
@@ -156,7 +188,7 @@ export default function EndfieldBudgetDashboard() {
           type: EntryType.EXPENSE,
           amountPerMin: 18,
           icon: "🔧",
-        })
+        }),
       );
 
     const materials = new CategoryLedger({
@@ -172,7 +204,7 @@ export default function EndfieldBudgetDashboard() {
         type: EntryType.INCOME,
         amountPerMin: 50,
         icon: "💰",
-      })
+      }),
     );
 
     const logistics = new CategoryLedger({
@@ -188,7 +220,7 @@ export default function EndfieldBudgetDashboard() {
         type: EntryType.EXPENSE,
         amountPerMin: 25,
         icon: "📦",
-      })
+      }),
     );
 
     const utilities = new CategoryLedger({
@@ -204,7 +236,7 @@ export default function EndfieldBudgetDashboard() {
         type: EntryType.EXPENSE,
         amountPerMin: 12,
         icon: "🧾",
-      })
+      }),
     );
 
     return new LedgerEngine({
@@ -232,9 +264,7 @@ export default function EndfieldBudgetDashboard() {
   const income = engine.totalIncomePerMin();
   const expense = engine.totalExpensePerMin();
 
-  const centerValue = formatInt(
-    categories.reduce((s, c) => s + c.balance, 0)
-  );
+  const centerValue = formatInt(categories.reduce((s, c) => s + c.balance, 0));
 
   const centerSub = net >= 0 ? "net positive" : "net negative";
 
@@ -257,7 +287,7 @@ export default function EndfieldBudgetDashboard() {
                   type: EntryType.EXPENSE,
                   amountPerMin: 10,
                   icon: "🔥",
-                })
+                }),
               );
               setTickIndex((x) => x + 1);
             }}
@@ -283,7 +313,9 @@ export default function EndfieldBudgetDashboard() {
       <div className="ef-footer">
         <div className="ef-footer-left">
           <div className="ef-muted">Duration of last auto-management:</div>
-          <div className="ef-strong">{msToHuman(engine.timeSinceAutoManageMs())}</div>
+          <div className="ef-strong">
+            {msToHuman(engine.timeSinceAutoManageMs())}
+          </div>
         </div>
 
         <div className="ef-footer-mid">
@@ -297,7 +329,9 @@ export default function EndfieldBudgetDashboard() {
           </div>
           <div className="ef-stat">
             <div className="ef-muted">Net</div>
-            <div className={`ef-strong ${net >= 0 ? "pos" : "neg"}`}>{formatPerMin(net)}</div>
+            <div className={`ef-strong ${net >= 0 ? "pos" : "neg"}`}>
+              {formatPerMin(net)}
+            </div>
           </div>
         </div>
 
